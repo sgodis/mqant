@@ -116,7 +116,9 @@ func (s *rpcServer) ServiceRegister() error {
 		Port:     port,
 		Metadata: config.Metadata,
 	}
+	s.Lock()
 	s.id = node.Id
+	s.Unlock()
 	node.Metadata["server"] = s.String()
 	node.Metadata["registry"] = config.Registry.String()
 
